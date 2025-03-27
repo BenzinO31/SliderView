@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     @IBOutlet var colorView: UIView!
     
     @IBOutlet var redLabel: UILabel!
@@ -29,29 +29,32 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sliderActionRed(){
-        redLabel.text = sliderRed.value.formatted()
+        let roundedValue = round(sliderRed.value * 100) / 100
+        redLabel.text = roundedValue.formatted()
         updateColor()
     }
     @IBAction func sliderActionGreen(){
-        greenLabel.text = sliderGreen.value.formatted()
+        let roundedValue = round(sliderGreen.value * 100) / 100
+        greenLabel.text = roundedValue.formatted()
         updateColor()
     }
     @IBAction func sliderActionBlue(){
-        blueLabel.text = sliderBlue.value.formatted()
+        let roundedValue = round(sliderBlue.value * 100) / 100
+        blueLabel.text = roundedValue.formatted()
         updateColor()
     }
     
     private func setupRedLabel() {
-        redLabel.text = sliderRed.value.formatted()
+        redLabel.text = String(format: sliderRed.value.formatted(), "%.2f")
     }
     private func setupGreenLabel() {
-        greenLabel.text = sliderGreen.value.formatted()
+        greenLabel.text = String(format: sliderGreen.value.formatted(),"%.2f")
     }
     private func setupBlueLabel() {
-        blueLabel.text = sliderBlue.value.formatted()
+        blueLabel.text = String(format: sliderBlue.value.formatted(),"%.2f")
     }
     
-    func updateColor() {
+    private func updateColor() {
         let red = CGFloat(sliderRed.value)
         let green = CGFloat(sliderGreen.value)
         let blue = CGFloat(sliderBlue.value)
